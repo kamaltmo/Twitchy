@@ -1,0 +1,44 @@
+{
+  "name": "Twitchy Beta",
+  "version": "0.0.3",
+  "manifest_version": 2,
+  "description": "Chat as fast as twitch chat moves!",
+  "homepage_url": "http://kamalosman.co.uk",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "default_locale": "en",
+  "background": {
+    "scripts": [
+      "src/bg/background.js"
+    ],
+    "persistent": true
+  },
+  "options_page": "src/browser_action/options.html",
+  "browser_action": {
+    "default_icon": "icons/icon48.png",
+    "default_title": "Twitchy Quick Settings",
+    "default_popup": "src/browser_action/browser_action.html"
+  },
+  "permissions": [
+    "storage",
+    "https://www.twitch.tv/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.twitch.tv/*"
+      ],
+      "css": ["src/inject/textcomplete.css"],
+      "js": [
+        "src/browser_action/jquery.min.js",
+        "src/browser_action/mousetrap.min.js",
+        "src/inject/inject.js",
+        "src/inject/jquery.textcomplete.min.js"
+      ]
+    }
+  ],
+  "content_security_policy": "script-src 'self' https://api.twitch.tv https://tmi.twitch.tv/; object-src 'self'"
+}

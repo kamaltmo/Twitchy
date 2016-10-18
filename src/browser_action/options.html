@@ -1,0 +1,142 @@
+<html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="mousetrap.min.js"></script>
+    <script type="text/javascript" src="bootstrap.min.js"></script>
+    <script type="text/javascript" src="masonry.pkgd.min.js"></script>
+    <script type="text/javascript" src="tapic.js"></script>
+    <script type="text/javascript" src="twitchemotes.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="optionstheme.css" rel="stylesheet" type="text/css">
+  </head><body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h3 class="text-center">
+            Twitchy Settings <i class="fa fa-fw fa-facebook"></i></h3>
+          <div class="tabbable-panel">
+            <div class="tabbable-line">
+              <ul class="nav nav-tabs ">
+                <li class="active">
+                  <a href="#tab_default_1" data-toggle="tab">
+							Macros </a>
+                </li>
+                <div class="col-sm-2 text-right">
+                  <a class="btn btn-warning" id="connectTwitch" data-toggle="modal" data-target="#connectModal">Get My Emotes <i class="fa fa-fw fa-twitch"></i></a>
+                </div>
+              </ul>
+              <div class="tab-content">
+                <div class="tab-pane active" id="tab_default_1">
+                  <div class="row">
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <label class="control-label" for="exampleInputEmail1">Macro</label>
+                        <input class="form-control" id="inKeys" placeholder="Keys" type="text" readonly="">
+                      </div>
+                    </div>
+                    <div class="col-md-1">
+                      <a class="btn btn-warning btn-xs" id="recordClicks">Record</a>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label class="control-label">Type</label>
+                        <select class="form-control" id="selectType">
+                          <option value="1">Text</option>
+                          <option value="2">Random Emotes</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label class="control-label" for="exampleInputPassword1">Name</label>
+                        <input class="form-control" id="keysName" placeholder="Macro Name" type="text">
+                      </div>
+                    </div>
+                    <div id="HotTextDiv" class="col-md-12 text-center">
+                      <textarea placeholder="Enter text you want to shortcut here <3" class="form-control" id="HotText"></textarea>
+                    </div>
+                    <div id="RandTextDiv">
+                      <div class="col-sm-10  text-center">
+                        <textarea placeholder="Enter text/emotes you want to have randomised and repeated here, seperated by commas :D" class="form-control" id="RandText"></textarea>
+                      </div>
+                      <div class="col-sm-2  text-center">
+                        <input type="number" id="myNumber" value="" class="form-control" placeholder="Length">
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="col-md-12">
+                    <div class="grid"></div>
+                    <br>
+                  </div>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                  <button class="btn btn-block btn-warning">Add</button>
+                  <br>
+                  <table class="table table-hover table-striped text-center">
+                    <tbody id="KeyList"></tbody>
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th class="text-center">Active Macros</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                  </table>
+                </div>
+                <div class="tab-pane" id="tab_default_2">
+                  <p>Howdy, I'm in Tab 2.</p>
+                  <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit
+                    lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure
+                    dolor in hendrerit in vulputate velit esse molestie consequat. Ut wisi
+                    enim ad minim veniam, quis nostrud exerci tation.</p>
+                  <p>
+                    <a class="btn btn-warning" href="http://j.mp/metronictheme" target="_blank">Click for more features...</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="connectModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <a type="button" class="close" data-dismiss="modal" aria-hidden="true">×</a>
+            <h4 class="modal-title text-center">Connect Your Personal Twitch Account</h4>
+          </div>
+          <div class="modal-body">
+            <p>If you choose to connect your twitch account twitchy will be able to suggest
+              any of the emotes you have access to including sub emotes.</p>
+            <br>
+            <input class="form-control" id="oaKey" placeholder="OAuth Key" type="password">
+            <h5>Dont know your OAuth ? Get it
+              <a href="https://twitchapps.com/tmi/">Here</a>
+            </h5>
+            <h6 class="text-info">Twitchy does not store this key, it is used once to get your current emote
+              list and then discarded
+              <br>Dont worry you are safe!</h6>
+          </div>
+          <div class="modal-footer">
+            <a class="btn btn-default" id="noEmotes" data-dismiss="modal">Close</a>
+            <a class="btn btn-warning" id="getEmotes">Update Emotes</a>
+            <div id="emoteLoader">
+              <div class="col-sm-1">
+                <div class="loader"></div>
+              </div>
+              <div class="col-sm-6" id="loaderText">
+                <h5 class="text-left text-warning">Loading Emotes</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+
+</body></html>
